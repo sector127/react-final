@@ -1,9 +1,5 @@
 import { lazy, Suspense } from 'react';
 import { Routes as Router, Route } from 'react-router-dom';
-import { useLocalStorage } from './hooks';
-import { useContext } from 'react';
-
-import { authContext, useAuthProvider } from './providers/AuthProvider';
 
 import { Loader } from './atoms';
 import { Layout } from './components/layout';
@@ -18,8 +14,6 @@ const Products = lazy(() => import('./pages/products'));
 const ShoppingCart = lazy(() => import('./pages/shopping-cart'));
 
 export const Routes = () => {
-  const { user } = useAuthProvider();
-  console.log(user);
   return (
     <Router>
       <Route path={routes.LOGIN_PATH} element={<Login />} />
