@@ -1,0 +1,58 @@
+[
+  {
+    "category": "ხილიეულობა",
+    "name": "ვაშლი",
+    "price": 1,
+    "stock": true,
+    "id": 1
+  },
+  {
+    "category": "ხილიეულობა",
+    "name": "ვაშლი 1",
+    "price": 1.5,
+    "stock": true,
+    "id": 2
+  },
+  {
+    "category": "ხილიეულობა",
+    "name": "ქლიავი",
+    "price": 3.4,
+    "stock": false,
+    "id": 3
+  },
+  {
+    "category": "ხილიეულობა",
+    "name": "ქლიავი 2",
+    "price": 5,
+    "stock": false,
+    "id": 4
+  },
+  {
+    "category": "ბოსტნეული",
+    "name": "პომიდორი",
+    "price": 3,
+    "stock": true,
+    "id": 5
+  },
+  {
+    "category": "ბოსტნეული",
+    "name": "პომიდორი1",
+    "price": 3.2,
+    "stock": true,
+    "id": 6
+  },
+  {
+    "category": "ბოსტნეული",
+    "name": "პომიდორი2",
+    "price": 2.7,
+    "stock": true,
+    "id": 7
+  },
+  {
+    "category": "ბოსტნეული",
+    "name": "კომბოსტო",
+    "price": 0.9,
+    "stock": false,
+    "id": 8
+  }
+]
