@@ -1,5 +1,6 @@
 .main-container {
-  background: url('../../images/world.jpg') no-repeat fixed center;
+  background: url('../../images/world.jpg') no-repeat center;
+  background-size: cover;
   min-height: 100vh;
   max-width: 100%;
 }
