@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-import { API_BASE_URL } from './config';
+import { AUTH_BASE_URL } from './config';
 
-axios.defaults.baseURL = API_BASE_URL;
+axios.defaults.baseURL = AUTH_BASE_URL;
 
 export const loginAsync = async (data) => {
   try {

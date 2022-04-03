@@ -4,6 +4,7 @@ import { useRequireAuth } from '../../hooks';
 
 import { Loader } from '../../atoms';
 import HomeContent from './HomeContent';
+import { CountiesByRegion } from '../../components/countries-by-region/CountriesByRegion';
 import './home.css';
 
 export const Home = (props) => {
@@ -14,8 +15,7 @@ export const Home = (props) => {
   }
   return (
     <div className="col-12 my-3">
-      <HomeContent />
-      <HomeContent />
+      <CountiesByRegion />
     </div>
   );
 };

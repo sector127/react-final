@@ -2,7 +2,7 @@ import { LoginForm } from '../../components/auth';
 
 import './login.css';
 
-export const Login = (props) => {
+export const Login = () => {
   return (
     <div className="row main-container">
       <div className="col-8"></div>

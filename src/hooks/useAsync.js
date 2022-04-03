@@ -5,21 +5,24 @@ export const useAsync = (asyncFn, immediate = true) => {
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
-  const execute = useCallback(() => {
-    setStatus('panding');
-    setData(null);
-    setError(null);
+  const execute = useCallback(
+    (params) => {
+      setStatus('panding');
+      setData(null);
+      setError(null);
 
-    return asyncFn()
-      .then((response) => {
-        setData(response);
-        setStatus('success');
-      })
-      .catch((error) => {
-        setError(error);
-        setStatus('error');
-      });
-  }, [asyncFn]);
+      return asyncFn(params)
+        .then((response) => {
+          setData(response);
+          setStatus('success');
+        })
+        .catch((error) => {
+          setError(error);
+          setStatus('error');
+        });
+    },
+    [asyncFn]
+  );
 
   useEffect(() => {
     if (immediate) {
