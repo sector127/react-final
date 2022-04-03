@@ -1,7 +1,7 @@
-export const Footer = (props) => {
+export const Footer = () => {
   return (
-    <footer>
-      <h2>ეს არის ფუტერი</h2>
+    <footer className="d-flex justify-content-center">
+      <p>kountriez.ge {new Date().getFullYear()} Some rights are broken</p>
     </footer>
   );
 };

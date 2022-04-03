@@ -14,7 +14,6 @@ export const LoginForm = () => {
   const { login } = useAuthProvider();
 
   const onSubmit = (loginData) => {
-    console.log('__loginData__', loginData);
     login(loginData);
   };
 

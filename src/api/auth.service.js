@@ -2,11 +2,15 @@ import axios from 'axios';
 
 import { AUTH_BASE_URL } from './config';
 
-axios.defaults.baseURL = AUTH_BASE_URL;
+const axiosLogin = axios.create({
+  baseURL: AUTH_BASE_URL,
+});
+
+// axios.defaults.baseURL = AUTH_BASE_URL;
 
 export const loginAsync = async (data) => {
   try {
-    const response = await axios.post(`/login`, data);
+    const response = await axiosLogin.post(`/login`, data);
     return response.data;
   } catch (e) {
     console.log('__loginAsync_Error', e);

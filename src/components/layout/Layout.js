@@ -12,9 +12,9 @@ const outletStyles = {
   minHeight: '500px',
 };
 
-export const Layout = ({ className, size = sizes.fluid }) => {
+export const Layout = ({ className, size = sizes.default }) => {
   return (
-    <div className={`${sizes.fluid} ${className}`}>
+    <div className={`${size} ${className}`}>
       <Header />
       <div className="my-3" style={outletStyles}>
         <Outlet />

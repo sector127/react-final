@@ -2,39 +2,29 @@ import { lazy, Suspense } from 'react';
 import { Routes as Router, Route } from 'react-router-dom';
 
 import { Loader } from './atoms';
-import { Layout } from './components/layout';
+import { Layout, LayoutSign } from './components/layout';
 import { Home } from './pages/home';
-import { Login } from './pages/login';
-import { Register } from './pages/register';
-import { Countries } from './pages/countries/Countries';
 import Profile from './pages/profile';
 import { NoMatch } from './pages/NoMatch';
 import * as routes from './utils/routePaths';
+import { LoginForm, RegisterForm } from './components/auth';
 
-const Products = lazy(() => import('./pages/products'));
-const ShoppingCart = lazy(() => import('./pages/shopping-cart'));
+const FavoriteCountries = lazy(() => import('./pages/favorite-countries'));
 
 export const Routes = () => {
   return (
     <Router>
-      <Route path={routes.LOGIN_PATH} element={<Login />} />
-      <Route path={routes.REGISTER_PATH} element={<Register />} />
+      <Route element={<LayoutSign />}>
+        <Route path={routes.LOGIN_PATH} element={<LoginForm />} />
+        <Route path={routes.REGISTER_PATH} element={<RegisterForm />} />
+      </Route>
       <Route element={<Layout />}>
         <Route path={routes.HOME_PATH} element={<Home />} />
         <Route
-          path={routes.PRODUCTS_PATH}
-          index
-          element={
-            <Suspense fallback={<Loader message="Products Loading..." />}>
-              <Products />
-            </Suspense>
-          }
-        />
-        <Route
-          path={routes.SHOPPING_CART_PATH}
+          path={routes.COUNTRIES_PATH}
           element={
             <Suspense fallback={<Loader message="Shopping Cart Loading..." />}>
-              <ShoppingCart />
+              <FavoriteCountries />
             </Suspense>
           }
         />

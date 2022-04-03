@@ -1,13 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { useAuthProvider } from '../../providers/AuthProvider';
-import { useCart } from '../../providers/CartProvider/CartProvider';
 
 import { Button } from '../../atoms';
 import { LOGIN_PATH, REGISTER_PATH, PROFILE_PATH } from '../../utils';
 
 export const RightNavigation = (props) => {
   const { user, logOut } = useAuthProvider();
-  const { resetBacket } = useCart();
   const renderGuestNavLinks = () => {
     return (
       <>
@@ -38,7 +36,6 @@ export const RightNavigation = (props) => {
             className="btn btn-link nav-link"
             onClick={() => {
               logOut();
-              resetBacket();
             }}
           >
             Login Out

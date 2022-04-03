@@ -15,7 +15,6 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (credentials) => {
     const user = await loginAsync(credentials);
-    console.log('user', user);
     if (user && user.token) {
       setUser(true);
       navigate(HOME_PATH);
@@ -27,7 +26,6 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (credentials) => {
     const newUser = await registerAsync(credentials);
-    console.log('__NEW_USER__', newUser);
     if (newUser && user.token) {
       setUser(true);
       navigate(HOME_PATH);
