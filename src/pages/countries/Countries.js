@@ -1,12 +1,9 @@
-import { useEffect } from 'react';
-
 import { useRequireAuth } from '../../hooks';
 
 import { Loader } from '../../atoms';
 import { CountiesByRegion } from '../../components/countries-by-region/CountriesByRegion';
-import './home.css';
 
-export const Home = (props) => {
+export const Countries = (props) => {
   const auth = useRequireAuth();
 
   if (!auth) {
