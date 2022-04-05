@@ -30,7 +30,7 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
   };
 
   const renderCountries = () => {
-    return data
+    return data && data
       .sort((a, b) => b[sortType] - a[sortType])
       .map((country) => {
         return (
