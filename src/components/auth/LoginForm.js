@@ -21,7 +21,6 @@ export const LoginForm = () => {
     <Form onSubmit={handleSubmit(onSubmit)}>
       <h2>Sign In</h2>
       <hr />
-
       <div className="col-12 m-auto">
         <div className="mb-3">
           <label htmlFor="email" className="form-label">

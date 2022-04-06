@@ -17,3 +17,13 @@ export const getCountriesByRegionName = async (region) => {
     return null;
   }
 };
+
+export const getCountries = async () => {
+  try {
+    const response = await axiosCountries.get(`/all`);
+    return response.data;
+  } catch (e) {
+    console.log('countries', e);
+    return null;
+  }
+};

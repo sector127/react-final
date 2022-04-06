@@ -1,7 +1,10 @@
-import { Loader } from '../../atoms';
-import { useRequireAuth } from '../../hooks';
+import { useState, useEffect } from 'react';
 
-export const FavoriteCountries = () => {
+import { getCountries } from '../../api/rest.service';
+import { Loader } from '../../atoms';
+import { useRequireAuth, useAsync } from '../../hooks';
+
+export const FavoriteCountries = ({ country = 'all' }) => {
   const auth = useRequireAuth();
 
   if (!auth) {
@@ -9,9 +12,8 @@ export const FavoriteCountries = () => {
   }
 
   return (
-    <div className="row">
-      <h2>List of favorite countries goes right here</h2>
-      <p className="h3">Soon, maybe</p>
+    <div className="col-12 mx-auto flex-colum">
+      <h2>Soon</h2>
     </div>
   );
 };

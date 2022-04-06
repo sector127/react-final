@@ -28,45 +28,51 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
       );
     });
   };
-
   const renderCountries = () => {
-    return data
-      .sort((a, b) => b[sortType] - a[sortType])
-      .map((country) => {
-        return (
-          <div className="card mb-2" style={{ width: '18rem' }} key={country.name.common}>
-            <img src={country.flags.svg} className="card-img-top" alt={country.name.common} />
-            <div className="card-body">
-              <div className="col-12 d-flex justify-content-between">
-                <h5 className="card-title">{country.name.common}</h5>
-                <p className="card-text d-flex justify-content-between">
-                  <img src={country.coatOfArms.svg} alt={country.cca3} width="30" />
+    return (
+      data &&
+      data
+        .sort((a, b) => b[sortType] - a[sortType])
+        .map((country) => {
+          return (
+            <div className="card mb-2" style={{ width: '18rem' }} key={country.name.common}>
+              <img src={country.flags.svg} className="card-img-top" alt={country.name.common} />
+              <div className="card-body">
+                <div className="col-12 d-flex justify-content-between">
+                  <h5 className="card-title">{country.name.common}</h5>
+                  <p className="card-text d-flex justify-content-between">
+                    <img src={country.coatOfArms.svg} alt={country.cca3} width="30" />
+                  </p>
+                </div>
+                {country.capital && (
+                  <p className="card-text">
+                    <span className="fw-bold">Capital: </span>
+                    {country.capital[0]}
+                  </p>
+                )}
+                <p className="cart-text">
+                  <span className="fw-bold">Population: </span>{' '}
+                  {country.population.toLocaleString()}
+                </p>
+                <p className="cart-text">
+                  <span className="fw-bold">Area: </span> {country.area}
                 </p>
               </div>
-              {country.capital && (
-                <p className="card-text">
-                  <span className="fw-bold">Capital: </span>
-                  {country.capital[0]}
-                </p>
-              )}
-              <p className="cart-text">
-                <span className="fw-bold">Population: </span> {country.population}
-              </p>
-              <p className="cart-text">
-                <span className="fw-bold">Area: </span> {country.area}
-              </p>
-              <a
-                href={country.maps.googleMaps}
-                className="btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Show on map
-              </a>
+              <div className="col-12 p-3 d-flex justify-content-between">
+                <a
+                  href={country.maps.googleMaps}
+                  className="btn btn-primary"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Show on map
+                </a>
+                <Button className="btn btn-danger" text="Like" />
+              </div>
             </div>
-          </div>
-        );
-      });
+          );
+        })
+    );
   };
 
   return (
