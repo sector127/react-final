@@ -37,7 +37,7 @@ export const CountryAndPhone = ({ country }) => {
           setSelectedCountry(e.target.value);
         }}
       >
-        <option defaultValue>------------</option>
+        <option defaultValue></option>
         {data &&
           data
             .sort((a, b) => a.name.common.localeCompare(b.name.common))
@@ -64,7 +64,7 @@ export const CountryAndPhone = ({ country }) => {
         )}
         {searchSelectedCountry && (
           <div className="d-flex">
-            <span className="col-2 ms-2">
+            <span className="ms-2">
               <input
                 className="form-control"
                 id="phone_index"

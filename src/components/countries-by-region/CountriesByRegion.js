@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { useAsync } from '../../hooks';
-import { Button, Loader } from '../../atoms';
+import { useAsync, useDebounce } from '../../hooks';
+import { Button, Loader, TextInput } from '../../atoms';
 import { REGIONS } from '../../utils/constants';
 import { getCountriesByRegionName } from '../../api/rest.service';
 
@@ -9,10 +9,24 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
   const [currentRegion, setCurrentRegion] = useState(region);
   const { execute, status, error, data } = useAsync(getCountriesByRegionName, false);
   const [sortType, setSortType] = useState('population');
+  const [result, setResult] = useState(data && data.slice());
+  const [filterTerm, setFilterTerm] = useState(result);
+  const pausedSearch = useDebounce(filterTerm, 400);
 
   useEffect(() => {
     execute(currentRegion);
   }, [currentRegion, execute]);
+
+  useEffect(() => {
+    if (pausedSearch) {
+      const dataSearch =
+        data &&
+        data.filter((el) => el.name.common.toLowerCase().includes(pausedSearch.toLowerCase()));
+      setResult(dataSearch);
+    } else {
+      setResult(data && data.slice());
+    }
+  }, [pausedSearch, data]);
 
   const renderRegions = () => {
     return REGIONS.map((item) => {
@@ -30,8 +44,8 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
   };
   const renderCountries = () => {
     return (
-      data &&
-      data
+      result &&
+      result
         .sort((a, b) => b[sortType] - a[sortType])
         .map((country) => {
           return (
@@ -75,14 +89,26 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
     );
   };
 
+  const handleFilterChange = ({ target }) => {
+    setFilterTerm(target.value);
+  };
+
   return (
     <div className="row">
-      <div className="d-flex align-items-center row col-12 mb-3">
-        <h2 className="text-muted col-6">
+      <div className="d-flex justify-content-center align-items-center row col-12 mb-3">
+        <h2 className="text-muted col-4">
           Selected region: <span className="text-primary">{currentRegion}</span>
         </h2>
         <div className="col-2">
+          <TextInput
+            defaultValue={filterTerm}
+            onChange={handleFilterChange}
+            placeholder="ძიება..."
+          />
+        </div>
+        <div className="col-2">
           <select className="form-select" onChange={(e) => setSortType(e.target.value)}>
+            <option defaultValue="sort">Sort by</option>
             <option value="population">Population</option>
             <option value="area">Area</option>
           </select>
