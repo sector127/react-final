@@ -27,7 +27,7 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
             .toLowerCase()
             .includes(
               pausedSearch.toLowerCase() ||
-                el.capital.toLowerCase().includes(pausedSearch.toLowerCase())
+                el.capital[0].toLowerCase().includes(pausedSearch.toLowerCase())
             )
         );
       setResult(dataSearch);
@@ -62,7 +62,6 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
     });
   };
   const { countryLikes, likeCountry } = useContext(CountryContext);
-
   const renderCountries = () => {
     return (
       result &&
