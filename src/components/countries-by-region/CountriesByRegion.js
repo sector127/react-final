@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
+import { CountryContext } from '../../providers/CountryProvider';
 import { useAsync, useDebounce } from '../../hooks';
 import { Button, Loader, TextInput } from '../../atoms';
 import { REGIONS } from '../../utils/constants';
@@ -8,7 +9,7 @@ import { getCountriesByRegionName } from '../../api/rest.service';
 export const CountiesByRegion = ({ region = 'Europe' }) => {
   const [currentRegion, setCurrentRegion] = useState(region);
   const { execute, status, error, data } = useAsync(getCountriesByRegionName, false);
-  const [sortType, setSortType] = useState('population');
+  const [sortType, setSortType] = useState();
   const [result, setResult] = useState(data && data.slice());
   const [filterTerm, setFilterTerm] = useState(result);
   const pausedSearch = useDebounce(filterTerm, 400);
@@ -21,7 +22,14 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
     if (pausedSearch) {
       const dataSearch =
         data &&
-        data.filter((el) => el.name.common.toLowerCase().includes(pausedSearch.toLowerCase()));
+        data.filter((el) =>
+          el.name.common
+            .toLowerCase()
+            .includes(
+              pausedSearch.toLowerCase() ||
+                el.capital.toLowerCase().includes(pausedSearch.toLowerCase())
+            )
+        );
       setResult(dataSearch);
     } else {
       setResult(data && data.slice());
@@ -38,10 +46,23 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
           onClick={() => {
             setCurrentRegion(item);
           }}
-        />
+        >
+          {currentRegion === item && status === 'pending' && (
+            <>
+              <span
+                className="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            </>
+          )}
+          {item}
+        </Button>
       );
     });
   };
+  const { countryLikes, likeCountry } = useContext(CountryContext);
+
   const renderCountries = () => {
     return (
       result &&
@@ -81,14 +102,24 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
                 >
                   Show on map
                 </a>
-                <Button className="btn btn-danger" text="Like" />
+                <Button
+                  className={`btn ${
+                    country.ccn3 in countryLikes.countries ? 'btn-danger' : 'btn-outline-primary'
+                  }`}
+                  text={`${country.ccn3 in countryLikes.countries ? '🤍' : 'Like'}`}
+                  onClick={() => {
+                    likeCountry(country);
+                  }}
+                />
               </div>
             </div>
           );
         })
     );
   };
-
+  {
+    console.log(countryLikes.countries.id);
+  }
   const handleFilterChange = ({ target }) => {
     setFilterTerm(target.value);
   };

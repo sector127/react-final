@@ -7,7 +7,7 @@ export const useAsync = (asyncFn, immediate = true) => {
 
   const execute = useCallback(
     (params) => {
-      setStatus('panding');
+      setStatus('pending');
       setData(null);
       setError(null);
 
