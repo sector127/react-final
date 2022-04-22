@@ -28,7 +28,7 @@ export const RightNavigation = (props) => {
       <>
         <li className="nav-item">
           <NavLink className="nav-link" to={PROFILE_PATH}>
-            Profile 👨
+            Profile <i className="fa fa-user-check"></i>
           </NavLink>
         </li>
         <li className="nav-item">

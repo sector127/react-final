@@ -1,4 +1,6 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useContext } from 'react';
+
+import { useLocalStorage } from '../../hooks';
 
 export const CountryContext = createContext({
   totalLiked: 0,
@@ -6,7 +8,7 @@ export const CountryContext = createContext({
 CountryContext.displayName = 'CountryContext';
 
 export const CountryProvider = ({ children }) => {
-  const [countryLikes, setCountryLiked] = useState({
+  const [countryLikes, setCountryLiked] = useLocalStorage('kountriez-app', {
     totalLiked: 0,
     countries: {},
   });

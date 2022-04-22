@@ -6,6 +6,8 @@ import { Button, Loader, TextInput } from '../../atoms';
 import { REGIONS } from '../../utils/constants';
 import { getCountriesByRegionName } from '../../api/rest.service';
 
+import './CountryByRegion.css';
+
 export const CountiesByRegion = ({ region = 'Europe' }) => {
   const [currentRegion, setCurrentRegion] = useState(region);
   const { execute, status, error, data } = useAsync(getCountriesByRegionName, false);
@@ -69,56 +71,55 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
         .sort((a, b) => b[sortType] - a[sortType])
         .map((country) => {
           return (
-            <div className="card mb-2" style={{ width: '18rem' }} key={country.name.common}>
-              <img src={country.flags.svg} className="card-img-top" alt={country.name.common} />
-              <div className="card-body">
-                <div className="col-12 d-flex justify-content-between">
-                  <h5 className="card-title">{country.name.common}</h5>
-                  <p className="card-text d-flex justify-content-between">
-                    <img src={country.coatOfArms.svg} alt={country.cca3} width="30" />
-                  </p>
+            <div className="col-3 d-flex justify-content-between mb-4" key={country.name.common}>
+              <div className="card country-card-3 shadow border" style={{ width: '18rem' }}>
+                <div className="background-block">
+                  <img src={country.flags.svg} alt={country.name.common} className="background" />
                 </div>
-                {country.capital && (
-                  <p className="card-text">
-                    <span className="fw-bold">Capital: </span>
-                    {country.capital[0]}
+                <div className="country-thumb-block">
+                  <img src={country.coatOfArms.svg} alt={country.cca3} className="country" />
+                </div>
+                <div className="card-content">
+                  <h2>
+                    {country.name.common}
+                    <small>Capital: {country.capital[0]}</small>
+                  </h2>
+                  <p className="mb-0">
+                    <small>
+                      Population:
+                      {country.population.toLocaleString()}
+                    </small>
                   </p>
-                )}
-                <p className="cart-text">
-                  <span className="fw-bold">Population: </span>{' '}
-                  {country.population.toLocaleString()}
-                </p>
-                <p className="cart-text">
-                  <span className="fw-bold">Area: </span> {country.area}
-                </p>
-              </div>
-              <div className="col-12 p-3 d-flex justify-content-between">
-                <a
-                  href={country.maps.googleMaps}
-                  className="btn btn-primary"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Show on map
-                </a>
-                <Button
-                  className={`btn ${
-                    country.ccn3 in countryLikes.countries ? 'btn-danger' : 'btn-outline-primary'
-                  }`}
-                  text={`${country.ccn3 in countryLikes.countries ? '🤍' : 'Like'}`}
-                  onClick={() => {
-                    likeCountry(country);
-                  }}
-                />
+                  <p className="mb-0">
+                    <small>
+                      Area:
+                      {country.area.toLocaleString()}
+                    </small>
+                  </p>
+                  <div className="icon-block">
+                    <a href={country.maps.googleMaps} target="_blank">
+                      <i className="fas fa-map-marker"></i>
+                    </a>
+                    <a
+                      href="#"
+                      onClick={() => {
+                        likeCountry(country);
+                      }}
+                    >
+                      {country.ccn3 in countryLikes.countries ? (
+                        <i className="fas fa-heart" style={{ color: '	#FF0000' }}></i>
+                      ) : (
+                        <i className="far fa-heart"></i>
+                      )}
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           );
         })
     );
   };
-  {
-    console.log(countryLikes.countries.id);
-  }
   const handleFilterChange = ({ target }) => {
     setFilterTerm(target.value);
   };
