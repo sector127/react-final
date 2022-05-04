@@ -15,18 +15,20 @@ export const FavoriteCountries = ({ country }) => {
   };
 
   return (
-    <div className="col-12 row d-flex justify-content-between flex-wrap">
+    <div className="col-12 d-flex justify-content-between flex-wrap">
       {Object.entries(countryLikes.countries).map(([countryId, favored]) => {
         return (
-          <div className="card mb-2" style={{ width: '18rem' }} key={countryId}>
-            <img src={favored.image} className="card-img-top" alt={favored.name} />
-            <div className="card-body">
-              <h5 className="card-title">{favored.name}</h5>
+          <div className="country-card-3" style={{ width: '18rem' }} key={countryId}>
+            <div className="background-block">
+              <img src={favored.image} className="background" alt={favored.name} />
+            </div>
+            <div className="card-content">
+              <h2 className="card-title">{favored.name}</h2>
               <p className="card-text">
-                <span className="fw-bold">Capital: </span>
+                <small>Capital: </small>
                 {favored.capital}
               </p>
-              <div className="col-12 p-3 d-flex justify-content-between">
+              <div className="icon-block">
                 <Button
                   className="btn btn-danger"
                   text="🤍"

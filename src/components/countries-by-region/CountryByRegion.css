@@ -7,7 +7,7 @@
   width: 100%;
   text-align: center;
   height: 368px;
-  border: none;
+  border: 1px solid #ccc;
 }
 .country-card-3 .background-block {
   float: left;
@@ -20,13 +20,12 @@
   vertical-align: top;
   opacity: 0.9;
   -webkit-filter: blur(0.5px);
-  filter: blur(0.5px);
-  -webkit-transform: scale(1.8);
-  transform: scale(1.8);
+  filter: blur(2.5px);
+  /* -webkit-transform: scale(1.8);
+  transform: scale(1.8); */
 }
 .country-card-3 .card-content {
   width: 100%;
-  padding: 15px 25px;
   color: #232323;
   float: left;
   background: #efefef;
@@ -82,17 +81,18 @@
   line-height: 30px;
   border-radius: 50%;
   margin: 0 5px;
+  transition: all 500ms;
 }
 .country-card-3 .icon-block {
   float: left;
   width: 100%;
-  margin-top: 15px;
+  margin: 15px 0;
 }
 .country-card-3 .icon-block a {
   text-decoration: none;
 }
 .country-card-3 i:hover {
-  background-color: #232323;
+  background-color: #0d6efd;
   color: #fff;
   text-decoration: none;
 }

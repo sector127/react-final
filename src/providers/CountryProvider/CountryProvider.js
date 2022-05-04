@@ -14,7 +14,6 @@ export const CountryProvider = ({ children }) => {
   });
   const likeCountry = (country) => {
     setCountryLiked((prev) => {
-      console.log(country);
       if (prev.countries[country.ccn3]) {
         const favCountry = { ...prev.countries };
         delete favCountry[country.ccn3];
@@ -40,7 +39,6 @@ export const CountryProvider = ({ children }) => {
           },
         };
     });
-    console.log(country);
   };
 
   const unLikeCountry = (id) => {

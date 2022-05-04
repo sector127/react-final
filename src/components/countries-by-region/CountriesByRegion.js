@@ -24,14 +24,7 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
     if (pausedSearch) {
       const dataSearch =
         data &&
-        data.filter((el) =>
-          el.name.common
-            .toLowerCase()
-            .includes(
-              pausedSearch.toLowerCase() ||
-                el.capital[0].toLowerCase().includes(pausedSearch.toLowerCase())
-            )
-        );
+        data.filter((el) => el.name.common.toLowerCase().includes(pausedSearch.toLowerCase()));
       setResult(dataSearch);
     } else {
       setResult(data && data.slice());
@@ -72,7 +65,7 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
         .map((country) => {
           return (
             <div className="col-3 d-flex justify-content-between mb-4" key={country.name.common}>
-              <div className="card country-card-3 shadow border" style={{ width: '18rem' }}>
+              <div className="card country-card-3" style={{ width: '18rem' }}>
                 <div className="background-block">
                   <img src={country.flags.svg} alt={country.name.common} className="background" />
                 </div>
@@ -82,7 +75,7 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
                 <div className="card-content">
                   <h2>
                     {country.name.common}
-                    <small>Capital: {country.capital[0]}</small>
+                    <small>Capital: {country.capital ? country.capital[0] : ''}</small>
                   </h2>
                   <p className="mb-0">
                     <small>
@@ -101,7 +94,7 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
                       <i className="fas fa-map-marker"></i>
                     </a>
                     <a
-                      href="#"
+                      className="btn"
                       onClick={() => {
                         likeCountry(country);
                       }}
