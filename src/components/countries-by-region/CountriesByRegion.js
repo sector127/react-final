@@ -90,7 +90,7 @@ export const CountiesByRegion = ({ region = 'Europe' }) => {
                     </small>
                   </p>
                   <div className="icon-block">
-                    <a href={country.maps.googleMaps} target="_blank">
+                    <a href={country.maps.googleMaps} className="btn" target="_blank">
                       <i className="fas fa-map-marker"></i>
                     </a>
                     <a
