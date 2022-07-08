@@ -24,7 +24,7 @@ export const LoginForm = () => {
       <div className="col-12 m-auto">
         <div className="mb-3">
           <label htmlFor="email" className="form-label">
-            Email address
+            Email address - "eve.holt@reqres.in"
           </label>
           <input
             type="email"
@@ -48,7 +48,7 @@ export const LoginForm = () => {
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
-            Password
+            Password - "cityslicka"
           </label>
           <input
             type="password"
